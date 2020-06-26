@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from .models import Contato
 
 
@@ -9,9 +10,10 @@ def index(request):
     })
 
 
-def showContato(request, contatoId):
-    contato = Contato
+def showContato(request, idContato):
+    contato = get_object_or_404(Contato, id=idContato)
     return render(request, 'contatos/showContato.html', {
         'contato':contato
     })
+
 
